@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{ data.person_name }} - Task List </h2>
+<mat-dialog-content>
+  <mat-card class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-table [dataSource]="dataPersonTask">
+        <ng-container matColumnDef="task">
+          <mat-header-cell *matHeaderCellDef> Task </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.task}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="assigned_to">
+          <mat-header-cell *matHeaderCellDef> Assigned To </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.assigned_to}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="due_date">
+          <mat-header-cell *matHeaderCellDef> Due Date </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.due_date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let row; let i = index">
+            <mat-select [(ngModel)]="row.status" [(value)]="row.status" (valueChange)="statusChange(i,row)">
+              <mat-option *ngFor="let n of statusList" [value]="n.id">
+                {{n.status}}
+              </mat-option>
+            </mat-select>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <table>
+        <tr *ngIf="!dataPersonTask.data.length">
+          <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+            No Record Found!
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>OK</button>
+</mat-dialog-actions>
+
+
+

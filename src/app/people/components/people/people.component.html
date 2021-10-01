@@ -1,0 +1,45 @@
+<mat-card class="mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title>People</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-table [dataSource]="dataPeople">
+      <ng-container matColumnDef="first_name">
+        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.first_name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="last_name">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.last_name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="start_date">
+        <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.start_date}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="personal_email">
+        <mat-header-cell *matHeaderCellDef> Personal Email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.personal_email}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="tasks_left">
+        <mat-header-cell *matHeaderCellDef> Tasks Left </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tasks_left}} completed </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="view_action">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="openTaskList(row.id, row.first_name)">View</button> </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <table>
+      <tr *ngIf="!dataPeople.data.length">
+        <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+          No Record Found!
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="openNewHireDialog()">Add New Hire</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>New Hire - Add</h2>
+<mat-dialog-content>
+  <form #form="ngForm" class="detail-item" fxFlex fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px grid">
+    <div style="display: flex; flex-direction: column;">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" [(ngModel)]="first_name" name="first_name" required minlength="3">
+        <mat-icon matSuffix>person_pin</mat-icon>
+        <mat-hint>minimum 3 characters</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" [(ngModel)]="last_name" name="last_name" required minlength="3">
+        <mat-icon matSuffix>person_pin</mat-icon>
+        <mat-hint>minimum 3 characters</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="datepicker" [(ngModel)]="start_date" placeholder="Start Date" name="start_date" required [value]="init_start_date.value">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker required></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Personal Email</mat-label>
+        <input matInput placeholder="Personal Email" [(ngModel)]="personal_email" name="personal_email" required minlength="10" email="true">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint>minimum 10 characters</mat-hint>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submitNewHire()">Save</button>
+</mat-dialog-actions>
+

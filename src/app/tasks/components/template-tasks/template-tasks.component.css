@@ -1,0 +1,19 @@
+mat-card {
+  margin: 16px;
+  margin-top: 0px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+mat-table {
+  overflow-x: auto;
+}
+
+mat-row,
+mat-header-row {
+  min-width: 800px;
+}
